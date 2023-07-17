@@ -9,7 +9,8 @@ My name is Pape Ndaw and I'm going into my sophomore year at Swampscott High Sch
 The ultrasonic sensor detects how close something is to the system. Once something is close the light will turn off signaling that it is detecting something. From there you will enter a single digit code to continue. If the code is correct you scan your card on the RFID reader and in the card is right you will have access.
    
                              Picture:
-![Alt text](unnamed-2.jpg)
+
+![Alt text](unnamed-3.jpg)
 
                             
                             Ultrasonic Sensor:
@@ -23,6 +24,8 @@ The first thing I did was connect my ultrasonic sensor to my motherboard, the El
 Next, I connected my RFID(radio frequency identification system) to scan my card. I once again connected it through my breadboard jsut to allow everything to be smoother. After that I repeated the same process with my keypad
 ![Alt text](DSC-1397.jpeg)
 ![Alt text](27899.png)
+                                  
+                                  
                                    RGB
         
 When I finished, I connected my RGB which is a led. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
