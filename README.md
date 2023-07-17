@@ -17,6 +17,7 @@ The ultrasonic sensor detects how close something is to the system. Once somethi
 The first thing I did was connect my ultrasonic sensor to my motherboard, the Elegoo Mega 2960 R3. I connected the VCC pin to 5 volt before connect my echo, trig, and ground. The echo and trig go into digital pins so in order so things to eaiser and better to see I connected the pin sinto my breadboard using male to male wires before connecting the trig and echo pins.
 ![Alt text](15569-Ultrasonic_Distance_Sensor_-_HC-SR04-01a.jpeg)
 
+
                             RFID and Keypad       
 
 Next, I connected my RFID(radio frequency identification system) to scan my card. I once again connected it through my breadboard jsut to allow everything to be smoother. After that I repeated the same process with my keypad
