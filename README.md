@@ -9,9 +9,9 @@ My name is Pape Ndaw and I'm going into my sophomore year at Swampscott High Sch
 The ultrasonic sensor detects how close something is to the system. Once something is close the light will turn off signaling that it is detecting something. From there you will enter a single digit code to continue. If the code is correct you scan your card on the RFID reader and in the card is right you will have access.
    
                              Picture:
-![Alt text](unnamed.jpg)
+![Alt text](unnamed-2.jpg)
 
-
+                            
                             Ultrasonic Sensor:
 
 The first thing I did was connect my ultrasonic sensor to my motherboard, the Elegoo Mega 2960 R3. I connected the VCC pin to 5 volt before connect my echo, trig, and ground. The echo and trig go into digital pins so in order so things to eaiser and better to see I connected the pin sinto my breadboard using male to male wires before connecting the trig and echo pins.
