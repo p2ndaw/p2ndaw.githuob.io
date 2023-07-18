@@ -374,7 +374,7 @@ void loop() {
 
 ## Tools to Use:
 
-![Alt text](https://www.amazon.com/ELEGOO-Project-Tutorial-Controller-Projects/dp/B01D8KOZF4)
+[kit](https://www.amazon.com/ELEGOO-Project-Tutorial-Controller-Projects/dp/B01D8KOZF4)
 
 
 ![Alt text](6177CmL0Q1L.jpeg)
