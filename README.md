@@ -171,7 +171,80 @@ void loop() {
 ## 3- RGB
         
 When I finished, I connected my RGB which is a led that produce any color by mixing the primary colors of light red, green, and blue. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
-![Alt text](Unknown.png)
+ 
+ Here is the code for the RGB:
+
+```C++
+ #define BLUE 4
+#define GREEN 3
+#define RED 2
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(RED, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BLUE, OUTPUT);
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, LOW);
+}
+
+void loop() {
+  distance = sr04.Distance();
+  // We start with if distance is < 100
+  if (distance < 100) {
+    digitalWrite(BLUE, LOW);
+    // Serial.println("pls scan now");
+    if (RC522.isCard()) {
+      /* If so then get its serial number */
+      String cardNumberScanned = "";
+      RC522.readCardSerial();
+      Serial.println("Card detected:");
+      for (int i = 0; i < 5; i++) {
+        // Serial.print(RC522.serNum[i], DEC);
+        cardNumberScanned.concat(RC522.serNum[i]);
+      }
+      Serial.println();
+      Serial.print("card Number: ");
+      Serial.println(cardNumberScanned);
+      if (cardNumberScanned.compareTo("13646395236") == 0) {
+        if (enteredKey == '1') {
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, HIGH);
+        } else {
+          Serial.print("incorrect code: ");
+          Serial.println(enteredKey);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, HIGH);
+          digitalWrite(GREEN, LOW);
+        }
+
+      } else {
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, LOW);
+        digitalWrite(BLUE, LOW);
+        delay(300);
+        digitalWrite(RED, HIGH);
+        digitalWrite(GREEN, LOW);
+        Serial.println("no card incorrect");
+      }
+      Serial.println();
+      Serial.println();
+    }
+  } else {
+    digitalWrite(BLUE, HIGH);
+  }
+  
+  ```
+  ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
 
 ## 4- Resistor
 
