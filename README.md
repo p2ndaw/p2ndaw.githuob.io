@@ -372,7 +372,7 @@ void loop() {
 ![Alt text](<Screen Shot 2023-07-18 at 03.17.07.png>)
                                   
 
-## Tools:
+## Tools to Use:
 
 ![Alt text](https://www.amazon.com/ELEGOO-Project-Tutorial-Controller-Projects/dp/B01D8KOZF4)
 
