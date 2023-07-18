@@ -312,7 +312,7 @@ void loop() {
     digitalWrite(BLUE, LOW);
     // Serial.println("pls scan now");
     if (RC522.isCard()) {
-      /* If so then get its serial number */
+      // If so then get its serial number 
       String cardNumberScanned = "";
       RC522.readCardSerial();
       Serial.println("Card detected:");
