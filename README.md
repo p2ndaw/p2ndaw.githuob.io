@@ -193,58 +193,29 @@ void setup() {
 }
 
 void loop() {
-  distance = sr04.Distance();
-  // We start with if distance is < 100
-  if (distance < 100) {
-    digitalWrite(BLUE, LOW);
-    // Serial.println("pls scan now");
-    if (RC522.isCard()) {
-      /* If so then get its serial number */
-      String cardNumberScanned = "";
-      RC522.readCardSerial();
-      Serial.println("Card detected:");
-      for (int i = 0; i < 5; i++) {
-        // Serial.print(RC522.serNum[i], DEC);
-        cardNumberScanned.concat(RC522.serNum[i]);
-      }
-      Serial.println();
-      Serial.print("card Number: ");
-      Serial.println(cardNumberScanned);
-      if (cardNumberScanned.compareTo("13646395236") == 0) {
-        if (enteredKey == '1') {
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, HIGH);
-        } else {
-          Serial.print("incorrect code: ");
-          Serial.println(enteredKey);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, HIGH);
-          digitalWrite(GREEN, LOW);
-        }
+digitalWrite(BLUE, LOW);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, HIGH);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+digitalWrite(RED, LOW);
 
-      } else {
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, HIGH);
-        digitalWrite(GREEN, LOW);
-        Serial.println("no card incorrect");
-      }
-      Serial.println();
-      Serial.println();
-    }
-  } else {
-    digitalWrite(BLUE, HIGH);
-  }
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, HIGH);
 }
+
   ```
   ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
 
@@ -314,9 +285,9 @@ RST             D9           D8
 void setup() {
   Serial.begin(9600);
   /* Enable the SPI interface */
-  SPI.begin();
+ SPI.begin();
   /* Initialise the RFID reader */
-  RC522.init();
+  RC522.init(); 
 
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
