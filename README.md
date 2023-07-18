@@ -27,6 +27,29 @@ I will have a full skematic linked below, but I will go through and explain it t
  ## 1- Ultrasonic Sensor:
 
 The first thing I did was connect my ultrasonic sensor to my motherboard, the Elegoo Mega 2960 R3. My sensor has 4 pins the VCC, TRIG, ECHO, and GND. The VCC is the pin that is connected to power so I had it connected to 3.3v pin on the Mega. After that I connected the grounf. Without the ground the eletricity flowing will be too much and could end in potential injury. Next we have the Trig and Echo pins. In order to sense what an ultrasonic sensor does is send out a frequency until it hits an object. That is the trig pin. The echo pin receives the frequency when its coming back from hitting an object. I plug those into their respective pins and move on to the next step.
+
+Here is the code for the sensor on it's own.
+
+```C++
+#include "SR04.h"
+#define TRIG_PIN 3
+#define ECHO_PIN 2
+SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
+long distance;
+
+void setup() {
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
+
+  void loop() {
+  distance = sr04.Distance();
+  // We start with if distance is < 100
+  if (distance < 100) {
+    digitalWrite(BLUE, LOW);
+    // Serial.println("pls scan now");
+  
+```
 ![Alt text](<Screen Shot 2023-07-17 at 22.18.41.png>)
 
 
@@ -34,8 +57,123 @@ The first thing I did was connect my ultrasonic sensor to my motherboard, the El
 
 Next, I connected my RFID(radio frequency identification system), which uses radio waves, to scan my card. For this you need to make sure that your wiring is precise and that you accurately define your pins in your code. Also keep in mind that your RFID needs to be plugged into a ground at all times or else it will not turn on. Once your RFID is correctly plugged in and set, you can now move on to connecting your keypad. As long all the pins are digital pins, it doesn't really matter where plug in the keypad but my own personal preference is using pins 23-51 odd.
 
-![Alt text](<Screen Shot 2023-07-18 at 00.35.37-1.png>)
-                                  
+Below I'll attach both the sckmatics and code for both the keypad and the RFID.
+RFID Code:
+```C++
+/* Include the RFID library */
+#include <RFID.h>
+#define SDA_DIO 53
+#define RESET_DIO 2
+RFID RC522(SDA_DIO, RESET_DIO);
+
+void setup() {
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
+  /* Initialise the RFID reader */
+  RC522.init();
+}
+
+void loop() {
+   if (RC522.isCard()) {
+      /* If so then get its serial number */
+      String cardNumberScanned = "";
+      RC522.readCardSerial();
+      Serial.println("Card detected:");
+      for (int i = 0; i < 5; i++) {
+        // Serial.print(RC522.serNum[i], DEC);
+        cardNumberScanned.concat(RC522.serNum[i]);
+      }
+      Serial.println();
+      Serial.print("card Number: ");
+      Serial.println(cardNumberScanned);
+      if (cardNumberScanned.compareTo("13646395236") == 0) {
+        if (enteredKey == '1') {
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, HIGH);
+        } else {
+          Serial.print("incorrect code: ");
+          Serial.println(enteredKey);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, HIGH);
+          digitalWrite(GREEN, LOW);
+        }
+
+      } else {
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, LOW);
+        digitalWrite(BLUE, LOW);
+        delay(300);
+        digitalWrite(RED, HIGH);
+        digitalWrite(GREEN, LOW);
+        Serial.println("no card incorrect");
+      }
+      Serial.println();
+      Serial.println();
+    }
+  } else {
+    digitalWrite(BLUE, HIGH);
+  }
+
+  ```
+
+  Keypad Code:
+```C++
+#include <Keypad.h>
+//KeyPad begin setup
+const byte ROWS = 4;  //four rows
+const byte COLS = 4;  //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  { '1', '2', '3', 'A' },
+  { '4', '5', '6', 'B' },
+  { '7', '8', '9', 'C' },
+  { '*', '0', '#', 'D' }
+};
+byte rowPins[ROWS] = { 23, 27, 31, 35 };  //connect to the row pinouts of the keypad
+byte colPins[COLS] = { 39, 43, 47, 24 };  //connect to the column pinouts of the keypad
+Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+
+//KeyPad end setup
+
+char customKey = customKeypad.getKey();
+char enteredKey = ' ';
+
+void setup() {
+
+}
+
+void loop() {
+
+ customKey = customKeypad.getKey();
+  if (customKey && enteredKey != customKey) {
+    Serial.println(customKey);
+    enteredKey = customKey;
+  }
+  if (customKey == 'D') {
+    Serial.print(distance);
+    Serial.println("cm");
+  }
+}
+
+```
+
+![Alt text](image-12.png)
+
+
+
+
+![Alt text](image-13.png)
+
+
+
 ## 3- RGB
         
 When I finished, I connected my RGB which is a led that produce any color by mixing the primary colors of light red, green, and blue. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
