@@ -164,15 +164,9 @@ void loop() {
 }
 
 ```
+![Alt text](<Screen Shot 2023-07-18 at 02.26.37.png>)
 
-![Alt text](image-12.png)
-
-
-
-
-![Alt text](image-13.png)
-
-
+![Alt text](<Screen Shot 2023-07-18 at 02.27.54.png>)
 
 ## 3- RGB
         
