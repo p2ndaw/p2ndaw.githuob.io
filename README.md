@@ -24,7 +24,7 @@ I have a full picture linked below, but I will go through and explain it to you 
 
 
                             
- ## 1- Ultrasonic Sensor:
+## 1- Ultrasonic Sensor:
 
 The first thing I did was connect my ultrasonic sensor to my motherboard, the Elegoo Mega 2960 R3. My sensor has 4 pins the VCC, TRIG, ECHO, and GND. The VCC is the pin that is connected to power so I had it connected to 3.3v pin on the Mega. After that I connected the grounf. Without the ground the eletricity flowing will be too much and could end in potential injury. Next we have the Trig and Echo pins. In order to sense what an ultrasonic sensor does is send out a frequency until it hits an object. That is the trig pin. The echo pin receives the frequency when its coming back from hitting an object. I plug those into their respective pins and move on to the next step.
 
