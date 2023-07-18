@@ -204,14 +204,11 @@ void loop() {
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
   // setting all three colors on the spectrum off so light is off completly
-  digitalWrite(BLUE, LOW);
-  // redefining blue as off before delay
   delay(300); // 300 microsecond delay
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, HIGH); // green light on
   digitalWrite(RED, LOW); // red defined as off again so it doesnt turn on with green
   digitalWrite(GREEN, LOW);
-  digitalWrite(BLUE, LOW);
   // all off again before delay
   delay(300);
   digitalWrite(RED, HIGH);
@@ -266,8 +263,8 @@ char hexaKeys[ROWS][COLS] = {
   { '7', '8', '9', 'C' },
   { '*', '0', '#', 'D' }
 };
-byte rowPins[ROWS] = { 23, 27, 31, 35 };  //connect to the row pinouts of the keypad
-byte colPins[COLS] = { 39, 43, 47, 24 };  //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = { 10, 11, 12, 13 };  //connect to the row pinouts of the keypad
+byte colPins[COLS] = { 6, 7, 8, 9 };  //connect to the column pinouts of the keypad
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 //KeyPad end setup
@@ -372,8 +369,7 @@ void loop() {
   }
 }
 ```
-![Alt text](<Screen Shot 2023-07-18 at 03.17.07.png>)
-                                  
+![Alt text](<Screen Shot 2023-07-18 at 04.41.58 png>)                        
 
 ## Tools to Use: 
 
