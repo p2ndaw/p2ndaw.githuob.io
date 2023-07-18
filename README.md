@@ -228,7 +228,7 @@ void loop() {
   ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
 
 ## 5- Resistor
-
+ 
 A resistor is an electrical component that limits or regulates the flow of electrical current in an electronic circuit. It helps keep certain things like LED stable or it can keep a component like a buzzer from overheating just to name a few examples.
 ![Alt text](R30220S-2-2.jpeg)
 
@@ -369,7 +369,7 @@ void loop() {
   }
 }
 ```
-![Alt text](<Screen Shot 2023-07-18 at 04.41.58-2.png>)
+![Alt text](<Screen Shot 2023-07-18 at 04.41.58-3.png>)
 
 ## Tools to Use: 
 
