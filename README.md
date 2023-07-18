@@ -369,7 +369,7 @@ void loop() {
   }
 }
 ```
-![Alt text](<Screen Shot 2023-07-18 at 04.41.58 png>)                        
+![Alt text](<Screen Shot 2023-07-18 at 04.41.58-2.png>)
 
 ## Tools to Use: 
 
