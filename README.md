@@ -10,7 +10,7 @@ The ultrasonic sensor detects how close something is to the system. Once somethi
    
 ## Picture:
 
-I have a full picture linked below, but I will go through and explain it to you step by step.
+I have a full picture linked below, but I will go through and explain it step by step.
 
 ![Alt text](<Screen Shot 2023-07-18 at 03.17.07-1.png>)
 
