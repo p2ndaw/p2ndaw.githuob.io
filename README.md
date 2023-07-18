@@ -32,7 +32,7 @@ The first thing I did was connect my ultrasonic sensor to my motherboard, the El
 
 Next, I connected my RFID(radio frequency identification system), which uses radio waves, to scan my card. For this you need to make sure that your wiring is precise and that you accurately define your pins in your code. Also keep in mind that your RFID needs to be plugged into a ground at all times or else it will not turn on. Once your RFID is correctly plugged in and set, you can now move on to connecting your keypad. As long all the pins are digital pins, it doesn't really matter where plug in the keypad but my own personal preference is using pins 23-51 odd.
 
-     ![Alt text](<Screen Shot 2023-07-18 at 00.35.37.png>)
+![Alt text](<Screen Shot 2023-07-18 at 00.35.37-1.png>)
                                   
 ## 3- RGB
         
