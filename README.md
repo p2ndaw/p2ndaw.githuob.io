@@ -39,18 +39,18 @@ SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
 long distance;
 
 void setup() {
-Serial.begin(9600);
-/* Enable the SPI interface */
-SPI.begin();
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
 }
 
 void loop() {
-distance = sr04.Distance();
-// We start with if distance is < 100
-if (distance < 100) {
-  digitalWrite(BLUE, LOW);
-// Serial.println("pls scan now");
-}
+  distance = sr04.Distance();
+  // We start with if distance is < 100
+  if (distance < 100) {
+    digitalWrite(BLUE, LOW);
+    // Serial.println("pls scan now");
+  }
 }
 ```
 ![Alt text](<Screen Shot 2023-07-17 at 22.18.41.png>)
@@ -69,61 +69,60 @@ RFID Code:
 RFID RC522(SDA_DIO, RESET_DIO);
 
 void setup() {
-Serial.begin(9600);
-/* Enable the SPI interface */
-SPI.begin();
-/* Initialise the RFID reader */
-RC522.init();
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
+  /* Initialise the RFID reader */
+  RC522.init();
 }
 
 void loop() {
-if (RC522.isCard()) {
-/* If so then get its serial number */
-String cardNumberScanned = "";
-RC522.readCardSerial();
-Serial.println("Card detected:");
-for (int i = 0; i < 5; i++) {
-// Serial.print(RC522.serNum[i], DEC);
-cardNumberScanned.concat(RC522.serNum[i]);
-}
-Serial.println();
-Serial.print("card Number: ");
-Serial.println(cardNumberScanned);
-if (cardNumberScanned.compareTo("13646395236") == 0) {
-  // This line is comparing the digits from the card you scanned to the correct card
-if (enteredKey == '1') {
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-delay(300);
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, HIGH);
-} else {
-Serial.print("incorrect code: ");
-Serial.println(enteredKey);
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-delay(300);
-digitalWrite(RED, HIGH);
-digitalWrite(GREEN, LOW);
-}
-// the lights are changing color based on the status of the card
-} else {
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-delay(300);
-digitalWrite(RED, HIGH);
-digitalWrite(GREEN, LOW);
-Serial.println("no card incorrect");
-}
-Serial.println();
-Serial.println();
-}
-else {
-digitalWrite(BLUE, HIGH);
-}
+  if (RC522.isCard()) {
+    /* If so then get its serial number */
+    String cardNumberScanned = "";
+    RC522.readCardSerial();
+    Serial.println("Card detected:");
+    for (int i = 0; i < 5; i++) {
+      // Serial.print(RC522.serNum[i], DEC);
+      cardNumberScanned.concat(RC522.serNum[i]);
+    }
+    Serial.println();
+    Serial.print("card Number: ");
+    Serial.println(cardNumberScanned);
+    if (cardNumberScanned.compareTo("13646395236") == 0) {
+      // This line is comparing the digits from the card you scanned to the correct card
+      if (enteredKey == '1') {
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, LOW);
+        digitalWrite(BLUE, LOW);
+        delay(300);
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, HIGH);
+      } else {
+        Serial.print("incorrect code: ");
+        Serial.println(enteredKey);
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, LOW);
+        digitalWrite(BLUE, LOW);
+        delay(300);
+        digitalWrite(RED, HIGH);
+        digitalWrite(GREEN, LOW);
+      }
+      // the lights are changing color based on the status of the card
+    } else {
+      digitalWrite(RED, LOW);
+      digitalWrite(GREEN, LOW);
+      digitalWrite(BLUE, LOW);
+      delay(300);
+      digitalWrite(RED, HIGH);
+      digitalWrite(GREEN, LOW);
+      Serial.println("no card incorrect");
+    }
+    Serial.println();
+    Serial.println();
+  } else {
+    digitalWrite(BLUE, HIGH);
+  }
 }
   ```
 ![Alt text](<Screen Shot 2023-07-18 at 02.26.37.png>)
@@ -156,20 +155,20 @@ char customKey = customKeypad.getKey();
 char enteredKey = ' ';
 
 void setup() {
-Serial.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
 
-customKey = customKeypad.getKey();
-if (customKey && enteredKey != customKey) {
-Serial.println(customKey);
-enteredKey = customKey;
-}
-if (customKey == 'D') {
-Serial.print(distance);
-Serial.println("cm");
-}
+  customKey = customKeypad.getKey();
+  if (customKey && enteredKey != customKey) {
+    Serial.println(customKey);
+    enteredKey = customKey;
+  }
+  if (customKey == 'D') {
+    Serial.print(distance);
+    Serial.println("cm");
+  }
 }
 // this codes that pressing d on the keypad will show you the exact measurement of the things close to the sensor
 ```
@@ -189,40 +188,44 @@ When I finished, I connected my RGB which is a led that produce any color by mix
 #define RED 4
 
 void setup() {
-Serial.begin(9600);
+  Serial.begin(9600);
 
-pinMode(RED, OUTPUT);
-pinMode(GREEN, OUTPUT);
-pinMode(BLUE, OUTPUT);
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-// setting up that the lights output light and they receive low voltage.
+  pinMode(RED, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BLUE, OUTPUT);
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, LOW);
+  // setting up that the lights output light and they receive low voltage.
 }
 
 void loop() {
-digitalWrite(BLUE, LOW);
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-delay(300);
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, HIGH);
-digitalWrite(RED, LOW);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-delay(300);
-digitalWrite(RED, HIGH);
-digitalWrite(GREEN, LOW);
-digitalWrite(RED, LOW);
-
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, LOW);
-delay(300);
-digitalWrite(RED, HIGH);
-digitalWrite(GREEN, LOW);
-digitalWrite(BLUE, HIGH);
-// this is all the lights fluxuating between being on and off
+  digitalWrite(BLUE, LOW);
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
+  // setting all three colors on the spectrum off so light is off completly
+  digitalWrite(BLUE, LOW);
+  // redefining blue as off before delay
+  delay(300); // 300 microsecond delay
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, HIGH); // green light on
+  digitalWrite(RED, LOW); // red defined as off again so it doesnt turn on with green
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, LOW);
+  // all off again before delay
+  delay(300);
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, LOW);
+  // red turned on and green defined as off so they dont mix
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, LOW);
+  // all turned back off before delay
+  delay(300);
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, HIGH);
+  // red turns on then blue turns on while green stays off
 }
   ```
   ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
@@ -238,7 +241,7 @@ For this project I made a security system using Arduino and composed of an ultra
 
  Once all your connections are done you need to code it in Arduino, I will put the combinded code for everything below.
 ```C++
-#include <SPI.h>
+##include <SPI.h>
 /* Include the RFID library */
 #include <RFID.h>
 #include "SR04.h"
@@ -293,9 +296,9 @@ RST             D9           D8
 void setup() {
   Serial.begin(9600);
   /* Enable the SPI interface */
- SPI.begin();
+  SPI.begin();
   /* Initialise the RFID reader */
-  RC522.init(); 
+  RC522.init();
 
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
@@ -312,7 +315,7 @@ void loop() {
     digitalWrite(BLUE, LOW);
     // Serial.println("pls scan now");
     if (RC522.isCard()) {
-      // If so then get its serial number 
+      // If so then get its serial number
       String cardNumberScanned = "";
       RC522.readCardSerial();
       Serial.println("Card detected:");
