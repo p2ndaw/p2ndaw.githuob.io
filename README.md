@@ -1,14 +1,14 @@
 # p2ndaw.githuob.io
   
-                               ## Intro:
+## Intro:
 
 My name is Pape Ndaw and I'm going into my sophomore year at Swampscott High School in Massachusetts. This summer I built a security system utilizing an ultrasonic sensor, a keypad, and a RFID card reader. In this reposotory I'll be showing you exactly how it works.
 
-                              ## How It Works:
+## How It Works:
 
 The ultrasonic sensor detects how close something is to the system. Once something is close the light will turn off signaling that it is detecting something. From there you will enter a single digit code to continue. If the code is correct you scan your card on the RFID reader and in the card is right you will have access.
    
-                             ## Picture:
+## Picture:
 
 
 
@@ -20,25 +20,25 @@ The ultrasonic sensor detects how close something is to the system. Once somethi
 
 
                             
-                            ## Ultrasonic Sensor:
+ ## Ultrasonic Sensor:
 
 The first thing I did was connect my ultrasonic sensor to my motherboard, the Elegoo Mega 2960 R3. I connected the VCC pin to 5 volt before connect my echo, trig, and ground. The echo and trig go into digital pins so in order so things to eaiser and better to see I connected the pin sinto my breadboard using male to male wires before connecting the trig and echo pins.
 ![Alt text](15569-Ultrasonic_Distance_Sensor_-_HC-SR04-01a.jpeg)
 
 
-                            ## RFID and Keypad       
+## RFID and Keypad       
 
 Next, I connected my RFID(radio frequency identification system) to scan my card. I once again connected it through my breadboard jsut to allow everything to be smoother. After that I repeated the same process with my keypad
 ![Alt text](DSC-1397.jpeg)
 ![Alt text](27899.png)
                                   
                                   
-                                   ## RGB
+## RGB
         
 When I finished, I connected my RGB which is a led. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
 ![Alt text](Unknown.png)
 
-                                   ## Code:
+## Code:
 
  Once all your connections are done you need to code it in Arduino, I will put the code below.
  ```C++
@@ -175,7 +175,7 @@ void loop() {
 ```
                                   
 
-                              ## Tools:
+## Tools:
 
 https://www.amazon.com/ELEGOO-Project-Tutorial-Controller-Projects/dp/B01D8KOZF4
 Above it the link to make the project.
