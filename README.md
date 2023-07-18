@@ -253,7 +253,7 @@ void loop() {
 A resistor is an electrical component that limits or regulates the flow of electrical current in an electronic circuit. It helps keep certain things like LED stable or it can keep a component like a buzzer from overheating just to name a few examples.
 ![Alt text](R30220S-2-2.jpeg)
 
-## Overall Project+Code:
+## Overall Project + Code:
 
 For this project I made a security system using Arduino and composed of an ultrasonic sensor, RFID scanner, a keypad, and an RGB led light. The way it works is that the RGB starts off blue until the ultrasonic sensor picks up something within 100 cm off it. Once something is sensed, the light turns off and you are asked to enter your 1 digit code and scan your card. If whatever the sensor picks up is past 100 cm though, the light will flash red. If you put in the wrong code bu tscan the right card the light will turn red. It works the same way vice versa. The only way to gain access and have the light turn green, you need the correct code and the correct card. That is how my security system works.
 
