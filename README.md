@@ -10,7 +10,7 @@ The ultrasonic sensor detects how close something is to the system. Once somethi
    
 ## Picture:
 
-I will have a full picture linked below, but I will go through and explain it to you step by step.
+I have a full picture linked below, but I will go through and explain it to you step by step.
 
 ![Alt text](<Screen Shot 2023-07-18 at 03.17.07-1.png>)
 
@@ -177,7 +177,7 @@ Serial.println("cm");
 
 ![Alt text](<Screen Shot 2023-07-18 at 02.27.54.png>)
 
-## 3- RGB
+## 4- RGB
         
 When I finished, I connected my RGB which is a led that produce any color by mixing the primary colors of light red, green, and blue. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
  
@@ -189,15 +189,15 @@ When I finished, I connected my RGB which is a led that produce any color by mix
 #define RED 4
 
 void setup() {
-  Serial.begin(9600);
+Serial.begin(9600);
 
-  pinMode(RED, OUTPUT);
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
-  digitalWrite(RED, LOW);
-  digitalWrite(GREEN, LOW);
-  digitalWrite(BLUE, LOW);
-  // setting up that the lights output light and they receive low voltage.
+pinMode(RED, OUTPUT);
+pinMode(GREEN, OUTPUT);
+pinMode(BLUE, OUTPUT);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+// setting up that the lights output light and they receive low voltage.
 }
 
 void loop() {
@@ -227,7 +227,7 @@ digitalWrite(BLUE, HIGH);
   ```
   ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
 
-## 4- Resistor
+## 5- Resistor
 
 A resistor is an electrical component that limits or regulates the flow of electrical current in an electronic circuit. It helps keep certain things like LED stable or it can keep a component like a buzzer from overheating just to name a few examples.
 ![Alt text](R30220S-2-2.jpeg)
