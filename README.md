@@ -31,35 +31,35 @@ The first thing I did was connect my ultrasonic sensor to my motherboard, the El
 Here is the code for the sensor on it's own.
 
 ```C++
-#include "SR04.h"
+#include "SR04.h"  //including library for sensor to work
 #define TRIG_PIN 3
 #define ECHO_PIN 2
+//defining pins
 SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
 long distance;
 
 void setup() {
-  Serial.begin(9600);
-  /* Enable the SPI interface */
-  SPI.begin();
+Serial.begin(9600);
+/* Enable the SPI interface */
+SPI.begin();
 }
 
-  void loop() {
-  distance = sr04.Distance();
-  // We start with if distance is < 100
-  if (distance < 100) {
-    digitalWrite(BLUE, LOW);
-    // Serial.println("pls scan now");
-  }
-  }
+void loop() {
+distance = sr04.Distance();
+// We start with if distance is < 100
+if (distance < 100) {
+  digitalWrite(BLUE, LOW);
+// Serial.println("pls scan now");
+}
+}
 ```
 ![Alt text](<Screen Shot 2023-07-17 at 22.18.41.png>)
 
 
-## 2- RFID and Keypad       
+## 2- RFID     
 
-Next, I connected my RFID(radio frequency identification system), which uses radio waves, to scan my card. For this you need to make sure that your wiring is precise and that you accurately define your pins in your code. Also keep in mind that your RFID needs to be plugged into a ground at all times or else it will not turn on. Once your RFID is correctly plugged in and set, you can now move on to connecting your keypad. As long all the pins are digital pins, it doesn't really matter where plug in the keypad but my own personal preference is using pins 23-51 odd.
-
-Below I'll attach both the sckmatics and code for both the keypad and the RFID.
+Next, I connected my RFID(radio frequency identification system), which uses radio waves, to scan my card. For this you need to make sure that your wiring is precise and that you accurately define your pins in your code. Also keep in mind that your RFID needs to be plugged into a ground at all times or else it will not turn on. 
+Below I'll attach both the sckmatics and code for the RFID.
 RFID Code:
 ```C++
 /* Include the RFID library */
@@ -69,64 +69,71 @@ RFID Code:
 RFID RC522(SDA_DIO, RESET_DIO);
 
 void setup() {
-  Serial.begin(9600);
-  /* Enable the SPI interface */
-  SPI.begin();
-  /* Initialise the RFID reader */
-  RC522.init();
+Serial.begin(9600);
+/* Enable the SPI interface */
+SPI.begin();
+/* Initialise the RFID reader */
+RC522.init();
 }
 
 void loop() {
-   if (RC522.isCard()) {
-      /* If so then get its serial number */
-      String cardNumberScanned = "";
-      RC522.readCardSerial();
-      Serial.println("Card detected:");
-      for (int i = 0; i < 5; i++) {
-        // Serial.print(RC522.serNum[i], DEC);
-        cardNumberScanned.concat(RC522.serNum[i]);
-      }
-      Serial.println();
-      Serial.print("card Number: ");
-      Serial.println(cardNumberScanned);
-      if (cardNumberScanned.compareTo("13646395236") == 0) {
-        if (enteredKey == '1') {
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, HIGH);
-        } else {
-          Serial.print("incorrect code: ");
-          Serial.println(enteredKey);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, HIGH);
-          digitalWrite(GREEN, LOW);
-        }
-
-      } else {
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, HIGH);
-        digitalWrite(GREEN, LOW);
-        Serial.println("no card incorrect");
-      }
-      Serial.println();
-      Serial.println();
-    }
-   else {
-    digitalWrite(BLUE, HIGH);
-  }
+if (RC522.isCard()) {
+/* If so then get its serial number */
+String cardNumberScanned = "";
+RC522.readCardSerial();
+Serial.println("Card detected:");
+for (int i = 0; i < 5; i++) {
+// Serial.print(RC522.serNum[i], DEC);
+cardNumberScanned.concat(RC522.serNum[i]);
+}
+Serial.println();
+Serial.print("card Number: ");
+Serial.println(cardNumberScanned);
+if (cardNumberScanned.compareTo("13646395236") == 0) {
+  // This line is comparing the digits from the card you scanned to the correct card
+if (enteredKey == '1') {
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, HIGH);
+} else {
+Serial.print("incorrect code: ");
+Serial.println(enteredKey);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+}
+// the lights are changing color based on the status of the card
+} else {
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+Serial.println("no card incorrect");
+}
+Serial.println();
+Serial.println();
+}
+else {
+digitalWrite(BLUE, HIGH);
+}
 }
   ```
+![Alt text](<Screen Shot 2023-07-18 at 02.26.37.png>)
 
-  Keypad Code:
+
+## 3- Keypad
+
+Once your RFID is correctly plugged in and set, you can now move on to connecting your keypad. As long all the pins are digital pins, it doesn't really matter where plug in the keypad but my own personal preference is using pins 23-51 odd.
+
+Keypad Code:
 ```C++
 #include <Keypad.h>
 //KeyPad begin setup
@@ -149,24 +156,24 @@ char customKey = customKeypad.getKey();
 char enteredKey = ' ';
 
 void setup() {
- Serial.begin(9600);
+Serial.begin(9600);
 }
 
 void loop() {
 
- customKey = customKeypad.getKey();
-  if (customKey && enteredKey != customKey) {
-    Serial.println(customKey);
-    enteredKey = customKey;
-  }
-  if (customKey == 'D') {
-    Serial.print(distance);
-    Serial.println("cm");
-  }
+customKey = customKeypad.getKey();
+if (customKey && enteredKey != customKey) {
+Serial.println(customKey);
+enteredKey = customKey;
 }
-
+if (customKey == 'D') {
+Serial.print(distance);
+Serial.println("cm");
+}
+}
+// this codes that pressing d on the keypad will show you the exact measurement of the things close to the sensor
 ```
-![Alt text](<Screen Shot 2023-07-18 at 02.26.37.png>)
+
 
 ![Alt text](<Screen Shot 2023-07-18 at 02.27.54.png>)
 
@@ -177,7 +184,7 @@ When I finished, I connected my RGB which is a led that produce any color by mix
  Here is the code for the RGB:
 
 ```C++
- #define BLUE 2
+#define BLUE 2
 #define GREEN 3
 #define RED 4
 
@@ -190,6 +197,7 @@ void setup() {
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, LOW);
+  // setting up that the lights output light and they receive low voltage.
 }
 
 void loop() {
@@ -214,6 +222,7 @@ delay(300);
 digitalWrite(RED, HIGH);
 digitalWrite(GREEN, LOW);
 digitalWrite(BLUE, HIGH);
+// this is all the lights fluxuating between being on and off
 }
   ```
   ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
@@ -228,7 +237,7 @@ A resistor is an electrical component that limits or regulates the flow of elect
 For this project I made a security system using Arduino and composed of an ultrasonic sensor, RFID scanner, a keypad, and an RGB led light. The way it works is that the RGB starts off blue until the ultrasonic sensor picks up something within 100 cm off it. Once something is sensed, the light turns off and you are asked to enter your 1 digit code and scan your card. If whatever the sensor picks up is past 100 cm though, the light will flash red. If you put in the wrong code bu tscan the right card the light will turn red. It works the same way vice versa. The only way to gain access and have the light turn green, you need the correct code and the correct card. That is how my security system works. 
 
  Once all your connections are done you need to code it in Arduino, I will put the combinded code for everything below.
- ```C++
+```C++
 #include <SPI.h>
 /* Include the RFID library */
 #include <RFID.h>
@@ -365,8 +374,8 @@ void loop() {
 
 ## Tools:
 
-https://www.amazon.com/ELEGOO-Project-Tutorial-Controller-Projects/dp/B01D8KOZF4
-Above it the link to make the project.
+![Alt text](https://www.amazon.com/ELEGOO-Project-Tutorial-Controller-Projects/dp/B01D8KOZF4)
+
 
 ![Alt text](6177CmL0Q1L.jpeg)
 ![Alt text](R30220S-2-1.jpeg)   
