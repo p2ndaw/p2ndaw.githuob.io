@@ -253,7 +253,7 @@ A resistor is an electrical component that limits or regulates the flow of elect
 
 ## Code:
 
- Once all your connections are done you need to code it in Arduino, I will put the code below.
+ Once all your connections are done you need to code it in Arduino, I will put the combinded code for everything below.
  ```C++
 #include <SPI.h>
 /* Include the RFID library */
