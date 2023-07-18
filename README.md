@@ -30,15 +30,19 @@ The first thing I did was connect my ultrasonic sensor to my motherboard, the El
 
 ## 2- RFID and Keypad       
 
-Next, I connected my RFID(radio frequency identification system) to scan my card. I once again connected it through my breadboard jsut to allow everything to be smoother. After that I repeated the same process with my keypad
-![Alt text](DSC-1397.jpeg)
-![Alt text](27899.png)
-                                  
+Next, I connected my RFID(radio frequency identification system), which uses radio waves, to scan my card. For this you need to make sure that your wiring is precise and that you accurately define your pins in your code. Also keep in mind that your RFID needs to be plugged into a ground at all times or else it will not turn on. Once your RFID is correctly plugged in and set, you can now move on to connecting your keypad. As long all the pins are digital pins, it doesn't really matter where plug in the keypad but my own personal preference is using pins 23-51 odd.
+
+     ![Alt text](<Screen Shot 2023-07-18 at 00.35.37.png>)
                                   
 ## 3- RGB
         
-When I finished, I connected my RGB which is a led. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
+When I finished, I connected my RGB which is a led that produce any color by mixing the primary colors of light red, green, and blue. I used a 220 resistor to resist the flow of the curennt to make sure the light doesn't overflow with power. I connected something called a cathode to the ground so the light can turn on.        
 ![Alt text](Unknown.png)
+
+## 4- Resistor
+
+A resistor is an electrical component that limits or regulates the flow of electrical current in an electronic circuit. It helps keep certain things like LED stable or it can keep a component like a buzzer from overheating just to name a few examples.
+![Alt text](R30220S-2-2.jpeg)
 
 ## Code:
 
