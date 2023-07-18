@@ -215,7 +215,6 @@ digitalWrite(RED, HIGH);
 digitalWrite(GREEN, LOW);
 digitalWrite(BLUE, HIGH);
 }
-
   ```
   ![Alt text](<Screen Shot 2023-07-18 at 02.30.17.png>)
 
